@@ -176,7 +176,9 @@ export default function App() {
             </a>
 
             <a
-              href="ayan.ahundova@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=ayan.ahundova@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
             >
               <Mail size={18} />
