@@ -419,7 +419,7 @@ export default function App() {
           </p>
 
           <a
-            href="mailto:your.email@example.com"
+            href="mailto:ayan.ahundova@gmail.com"
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-300"
           >
             <Mail size={18} />
