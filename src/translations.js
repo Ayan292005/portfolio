@@ -8,6 +8,7 @@ export const translations = {
 
     badge: "Junior Frontend Developer",
     heroTitleStart: "Hi, I'm",
+    name: "Ayan Akhundova",
     heroText:
       "I build responsive, clean, and user-friendly web interfaces using HTML, CSS, JavaScript, and React. I enjoy creating modern UI, improving my frontend skills, and working on real projects.",
     viewProjects: "View Projects",
@@ -52,6 +53,7 @@ export const translations = {
 
     badge: "Junior Frontend Developer",
     heroTitleStart: "Привет, я",
+    name: "Аян Ахундова",
     heroText:
       "Я создаю адаптивные, аккуратные и удобные веб-интерфейсы с помощью HTML, CSS, JavaScript и React. Мне нравится делать современные UI, улучшать frontend-навыки и работать над реальными проектами.",
     viewProjects: "Смотреть проекты",

@@ -12,6 +12,9 @@ import {
   Briefcase,
   GraduationCap,
   ArrowRight,
+  Menu,
+  X,
+  Laptop,
 } from "lucide-react";
 
 import ecoFriendlyVideo from "./assets/eco-friendly.mp4";
@@ -98,10 +101,16 @@ const fadeUp = {
 
 export default function App() {
   const [language, setLanguage] = useState("en");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const t = translations[language];
 
   const changeLanguage = () => {
     setLanguage(language === "en" ? "ru" : "en");
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -113,9 +122,13 @@ export default function App() {
       </div>
 
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#home" className="text-lg font-bold tracking-tight">
-            Ayan Akhundova<span className="text-cyan-400">.</span>
+        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
+          <a
+            href="#home"
+            onClick={closeMenu}
+            className="text-base font-bold tracking-tight sm:text-lg"
+          >
+               Ayan Akhundova<span className="text-cyan-400">.</span>
           </a>
 
           <div className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
@@ -138,10 +151,82 @@ export default function App() {
             <button
               onClick={changeLanguage}
               className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/40 hover:bg-white/10 hover:text-white"
+              type="button"
             >
               {language === "en" ? "RU" : "EN"}
             </button>
           </div>
+
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 p-2 text-slate-200 transition hover:bg-white/10 md:hidden"
+            aria-label="Open menu"
+            type="button"
+          >
+            {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -12, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-4 right-4 top-[72px] z-50 rounded-2xl border border-white/10 bg-slate-950/95 p-4 shadow-2xl shadow-black/40 backdrop-blur-xl md:hidden"
+            >
+              <div className="flex flex-col gap-2 text-sm text-slate-300">
+                <a
+                  href="#about"
+                  onClick={closeMenu}
+                  className="rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-white"
+                >
+                  {t.about}
+                </a>
+
+                <a
+                  href="#skills"
+                  onClick={closeMenu}
+                  className="rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-white"
+                >
+                  {t.skills}
+                </a>
+
+                <a
+                  href="#projects"
+                  onClick={closeMenu}
+                  className="rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-white"
+                >
+                  {t.projects}
+                </a>
+
+                <a
+                  href="#certificates"
+                  onClick={closeMenu}
+                  className="rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-white"
+                >
+                  {t.certificates}
+                </a>
+
+                <a
+                  href="#contact"
+                  onClick={closeMenu}
+                  className="rounded-xl px-4 py-3 transition hover:bg-white/10 hover:text-white"
+                >
+                  {t.contact}
+                </a>
+
+                <button
+                  onClick={() => {
+                    changeLanguage();
+                    closeMenu();
+                  }}
+                  className="mt-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-left font-semibold text-slate-300 transition hover:border-cyan-300/40 hover:bg-white/10 hover:text-white"
+                  type="button"
+                >
+                  {language === "en" ? "Switch to Russian" : "Switch to English"}
+                </button>
+              </div>
+            </motion.div>
+          )}
         </nav>
       </header>
 
@@ -158,24 +243,18 @@ export default function App() {
         >
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs text-cyan-200 sm:mb-6 sm:text-sm">
             <Sparkles size={16} />
-            Junior Frontend Developer
+            {t.badge}
           </div>
 
           <h1 className="max-w-3xl text-4xl font-black leading-[1.05] tracking-tight sm:text-5xl md:text-6xl xl:text-7xl">
-            Hi, I&apos;m{" "}
+            {t.heroTitleStart}{" "}
             <span className="bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
-              Ayan
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
-              Akhundova
+              {t.name}
             </span>
           </h1>
 
           <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300 sm:mt-6 sm:text-lg">
-            I build responsive, clean, and user-friendly web interfaces using
-            HTML, CSS, JavaScript, and React. I enjoy creating modern UI,
-            improving my frontend skills, and working on real projects.
+            {t.heroText}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -183,7 +262,7 @@ export default function App() {
               href="#projects"
               className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-300 sm:w-auto"
             >
-              View Projects
+              {t.viewProjects}
               <ArrowRight
                 size={18}
                 className="transition group-hover:translate-x-1"
@@ -194,7 +273,7 @@ export default function App() {
               href="#contact"
               className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
             >
-              Contact Me
+              {t.contactMe}
             </a>
           </div>
 
@@ -344,31 +423,40 @@ export default function App() {
                 key={project.title}
                 className="group flex flex-col rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-xl shadow-black/20 transition hover:-translate-y-2 hover:border-cyan-300/40"
               >
-                <a
-                  href={project.video}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Open demo video for ${project.title}`}
-                  className="group/video relative mb-5 block h-44 overflow-hidden rounded-2xl bg-slate-900"
-                >
-                  <img
-                    src={project.preview}
-                    alt={`${project.title} preview`}
-                    className="h-full w-full object-cover transition duration-500 group-hover/video:scale-105"
-                  />
+                {project.video && project.preview ? (
+                  <a
+                    href={project.video}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`Open demo video for ${project.title}`}
+                    className="group/video relative mb-5 block h-44 overflow-hidden rounded-2xl bg-slate-900"
+                  >
+                    <img
+                      src={project.preview}
+                      alt={`${project.title} preview`}
+                      className="h-full w-full object-cover transition duration-500 group-hover/video:scale-105"
+                    />
 
-                  <div className="absolute inset-0 bg-slate-950/40 transition group-hover/video:bg-slate-950/20" />
+                    <div className="absolute inset-0 bg-slate-950/40 transition group-hover/video:bg-slate-950/20" />
 
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white shadow-2xl backdrop-blur-md transition group-hover/video:scale-110 group-hover/video:bg-cyan-400 group-hover/video:text-slate-950">
-                      <Play size={28} fill="currentColor" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white shadow-2xl backdrop-blur-md transition group-hover/video:scale-110 group-hover/video:bg-cyan-400 group-hover/video:text-slate-950">
+                        <Play size={28} fill="currentColor" />
+                      </div>
                     </div>
-                  </div>
 
-                  <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-slate-950/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
-                    Demo Video
-                  </span>
-                </a>
+                    <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-slate-950/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+                      Demo Video
+                    </span>
+                  </a>
+                ) : (
+                  <div className="relative mb-5 flex h-44 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-400/20 via-violet-400/20 to-fuchsia-400/20">
+                    <Laptop size={52} className="text-cyan-200" />
+                    <span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-slate-950/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+                      Preview coming soon
+                    </span>
+                  </div>
+                )}
 
                 <h3 className="text-xl font-bold">{project.title}</h3>
 
@@ -400,15 +488,17 @@ export default function App() {
                     {t.code}
                   </a>
 
-                  <a
-                    href={project.video}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
-                  >
-                    <Play size={16} fill="currentColor" />
-                    {t.demo || "Demo Video"}
-                  </a>
+                  {project.video && (
+                    <a
+                      href={project.video}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+                    >
+                      <Play size={16} fill="currentColor" />
+                      {t.demo || "Demo Video"}
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
