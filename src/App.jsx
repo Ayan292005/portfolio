@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { translations } from "./translations";
+
 import {
   Mail,
   ExternalLink,
@@ -11,7 +13,6 @@ import {
   GraduationCap,
   ArrowRight,
 } from "lucide-react";
-
 
 const skills = [
   "HTML",
@@ -29,6 +30,8 @@ const projects = [
     title: "Admin Dashboard",
     description:
       "A team project admin panel built for managing tourism-related data. I worked on UI adaptation, frontend components, and responsive layout improvements.",
+    descriptionRu:
+      "Командный проект админ-панели для управления данными, связанными с туризмом. Я работала над адаптацией интерфейса, frontend-компонентами и улучшением адаптивной верстки.",
     tech: ["React", "JavaScript", "CSS", "Git"],
     github: "https://github.com/yourusername/admin-dashboard",
     demo: "#",
@@ -37,6 +40,8 @@ const projects = [
     title: "Weather App",
     description:
       "A responsive weather application that allows users to search for cities and view current weather information using an external API.",
+    descriptionRu:
+      "Адаптивное приложение погоды, которое позволяет пользователям искать города и просматривать текущую информацию о погоде через внешний API.",
     tech: ["React", "API", "CSS"],
     github: "https://github.com/yourusername/weather-app",
     demo: "#",
@@ -45,6 +50,8 @@ const projects = [
     title: "Modern Landing Page",
     description:
       "A clean and responsive landing page created from a Figma-style design with focus on layout, typography, and mobile-friendly UI.",
+    descriptionRu:
+      "Аккуратный и адаптивный лендинг, созданный по дизайну в стиле Figma, с акцентом на структуру, типографику и удобство на мобильных устройствах.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/yourusername/landing-page",
     demo: "#",
@@ -54,15 +61,21 @@ const projects = [
 const certificates = [
   {
     title: "HTML/CSS Certificate",
+    titleRu: "Сертификат HTML/CSS",
     issuer: "Certiport / Course Certificate",
+    issuerRu: "Certiport / Сертификат курса",
   },
   {
     title: "Code Academy Diploma",
+    titleRu: "Диплом Code Academy",
     issuer: "Course Certificate",
+    issuerRu: "Сертификат курса",
   },
   {
     title: "IELTS Academic 7.0",
+    titleRu: "IELTS Academic 7.0",
     issuer: "IDP IELTS",
+    issuerRu: "IDP IELTS",
   },
 ];
 
@@ -72,6 +85,13 @@ const fadeUp = {
 };
 
 export default function App() {
+  const [language, setLanguage] = useState("en");
+  const t = translations[language];
+
+  const changeLanguage = () => {
+    setLanguage(language === "en" ? "ru" : "en");
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 text-white overflow-hidden">
       <div className="absolute inset-0 -z-0 overflow-hidden">
@@ -88,130 +108,140 @@ export default function App() {
 
           <div className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
             <a href="#about" className="transition hover:text-white">
-              About
+              {t.about}
             </a>
             <a href="#skills" className="transition hover:text-white">
-              Skills
+              {t.skills}
             </a>
             <a href="#projects" className="transition hover:text-white">
-              Projects
+              {t.projects}
             </a>
             <a href="#certificates" className="transition hover:text-white">
-              Certificates
+              {t.certificates}
             </a>
             <a href="#contact" className="transition hover:text-white">
-              Contact
+              {t.contact}
             </a>
+
+            <button
+              onClick={changeLanguage}
+              className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/40 hover:bg-white/10 hover:text-white"
+            >
+              {language === "en" ? "RU" : "EN"}
+            </button>
           </div>
         </nav>
       </header>
 
-      <section
-        id="home"
-        className="relative z-10 mx-auto grid min-h-[88vh] max-w-6xl items-center gap-10 px-6 py-20 md:grid-cols-[1.2fr_0.8fr]"
+    <section
+  id="home"
+  className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-5 py-12 sm:px-6 sm:py-16 md:py-20 xl:min-h-[88vh] md:grid-cols-[1fr_0.9fr] xl:gap-14"
+>
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={fadeUp}
+    transition={{ duration: 0.7 }}
+    className="min-w-0"
+  >
+    <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs text-cyan-200 sm:mb-6 sm:text-sm">
+      <Sparkles size={16} />
+      Junior Frontend Developer
+    </div>
+
+    <h1 className="max-w-3xl text-4xl font-black leading-[0.95] tracking-tight sm:text-5xl md:text-7xl">
+      Hi, I&apos;m{" "}
+      <span className="bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
+        Ayan
+      </span>
+      <br />
+      <span className="bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
+        Akhundova
+      </span>
+    </h1>
+
+    <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300 sm:mt-6 sm:text-lg">
+      I build responsive, clean, and user-friendly web interfaces using HTML,
+      CSS, JavaScript, and React. I enjoy creating modern UI, improving my
+      frontend skills, and working on real projects.
+    </p>
+
+    <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+      <a
+        href="#projects"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-300 sm:w-auto"
       >
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.7 }}
-        >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">
-            <Sparkles size={16} />
-            Junior Frontend Developer
-          </div>
+        View Projects
+        <ArrowRight
+          size={18}
+          className="transition group-hover:translate-x-1"
+        />
+      </a>
 
-          <h1 className="max-w-3xl text-5xl font-black leading-tight tracking-tight md:text-7xl">
-            Hi, I&apos;m{" "}
-            <span className="bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent">
-              Ayan Akhundova
-            </span>
-          </h1>
+      <a
+        href="#contact"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+      >
+        Contact Me
+      </a>
+    </div>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            I build responsive, clean, and user-friendly web interfaces using
-            HTML, CSS, JavaScript, and React. I enjoy creating modern UI,
-            improving my frontend skills, and working on real projects.
-          </p>
+    <div className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-3 sm:mt-8 sm:flex sm:flex-wrap sm:gap-4">
+      <a
+        href="https://github.com/yourusername"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+      >
+        <Code2 size={18} />
+        GitHub
+      </a>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#projects"
-              className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-300"
-            >
-              View Projects
-              <ArrowRight
-                size={18}
-                className="transition group-hover:translate-x-1"
-              />
-            </a>
+      <a
+        href="https://linkedin.com/in/yourusername"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+      >
+        <ExternalLink size={18} />
+        LinkedIn
+      </a>
 
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
-            >
-              Contact Me
-            </a>
-          </div>
+      <a
+        href="mailto:your.email@example.com"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
+      >
+        <Mail size={18} />
+        Email
+      </a>
+    </div>
+  </motion.div>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="https://github.com/Ayan292005"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
-            >
-              <Code2 size={18} />
-              GitHub
-            </a>
+  <motion.div
+    initial={{ opacity: 0, scale: 0.92 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.8, delay: 0.15 }}
+    className="relative w-full"
+  >
+    <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-4 shadow-2xl shadow-black/40 backdrop-blur-xl sm:rounded-[2rem] sm:p-6">
+      <div className="mb-4 flex gap-2 sm:mb-5">
+        <span className="h-3 w-3 rounded-full bg-red-400" />
+        <span className="h-3 w-3 rounded-full bg-yellow-400" />
+        <span className="h-3 w-3 rounded-full bg-green-400" />
+      </div>
 
-            <a
-              href="https://www.linkedin.com/in/ayan-a-9b541b277/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
-            >
-              <ExternalLink size={18} />
-              LinkedIn
-            </a>
-
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=ayan.ahundova@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-300 transition hover:bg-white/10 hover:text-white"
-            >
-              <Mail size={18} />
-              Email
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="relative"
-        >
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-black/40 backdrop-blur-xl">
-            <div className="mb-5 flex gap-2">
-              <span className="h-3 w-3 rounded-full bg-red-400" />
-              <span className="h-3 w-3 rounded-full bg-yellow-400" />
-              <span className="h-3 w-3 rounded-full bg-green-400" />
-            </div>
-
-            <pre className="overflow-hidden rounded-2xl bg-slate-950/80 p-5 text-sm leading-7 text-slate-300">
-              <code>{`const developer = {
+     <pre className="whitespace-pre-wrap break-words rounded-2xl bg-slate-950/80 p-4 text-xs leading-7 text-slate-300 sm:p-5 sm:text-sm">
+        <code>{`const developer = {
   name: "Ayan Akhundova",
   role: "Frontend Developer",
   skills: ["React", "JavaScript", "HTML/CSS"],
   focus: "Clean and responsive UI",
   learning: true,
 };`}</code>
-            </pre>
-          </div>
-        </motion.div>
-      </section>
+      </pre>
+    </div>
+  </motion.div>
+</section>
 
       <section id="about" className="relative z-10 mx-auto max-w-6xl px-6 py-20">
         <motion.div
@@ -225,28 +255,18 @@ export default function App() {
           <div>
             <p className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
               <User size={16} />
-              About me
+              {t.aboutSmallTitle}
             </p>
 
             <h2 className="text-4xl font-bold tracking-tight">
-              Creating interfaces that are simple, clear, and useful.
+              {t.aboutTitle}
             </h2>
           </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-8 text-slate-300 shadow-xl shadow-black/20">
-            <p className="leading-8">
-              I am a junior frontend developer focused on building modern web
-              applications. I work with HTML, CSS, JavaScript, React, Git, and
-              GitHub. I am interested in responsive design, UI/UX, and writing
-              clean code that is easy to understand and maintain.
-            </p>
+            <p className="leading-8">{t.aboutTextOne}</p>
 
-            <p className="mt-4 leading-8">
-              I have experience working on personal and team projects, including
-              admin panels, landing pages, and React applications. My goal is to
-              grow as a frontend developer and contribute to real products with
-              useful and polished interfaces.
-            </p>
+            <p className="mt-4 leading-8">{t.aboutTextTwo}</p>
           </div>
         </motion.div>
       </section>
@@ -261,11 +281,11 @@ export default function App() {
         >
           <p className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             <Code2 size={16} />
-            Skills
+            {t.skillsSmallTitle}
           </p>
 
           <h2 className="text-4xl font-bold tracking-tight">
-            Technologies I use
+            {t.skillsTitle}
           </h2>
 
           <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
@@ -294,10 +314,12 @@ export default function App() {
         >
           <p className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             <Briefcase size={16} />
-            Projects
+            {t.projectsSmallTitle}
           </p>
 
-          <h2 className="text-4xl font-bold tracking-tight">Selected work</h2>
+          <h2 className="text-4xl font-bold tracking-tight">
+            {t.projectsTitle}
+          </h2>
 
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {projects.map((project) => (
@@ -312,7 +334,7 @@ export default function App() {
                 <h3 className="text-xl font-bold">{project.title}</h3>
 
                 <p className="mt-3 flex-1 text-sm leading-7 text-slate-300">
-                  {project.description}
+                  {language === "en" ? project.description : project.descriptionRu}
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -334,7 +356,7 @@ export default function App() {
                     className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 transition hover:bg-white/10"
                   >
                     <Code2 size={16} />
-                    Code
+                    {t.code}
                   </a>
 
                   <a
@@ -344,7 +366,7 @@ export default function App() {
                     className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
                   >
                     <ExternalLink size={16} />
-                    Demo
+                    {t.demo}
                   </a>
                 </div>
               </article>
@@ -366,11 +388,11 @@ export default function App() {
         >
           <p className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
             <GraduationCap size={16} />
-            Certificates
+            {t.certificatesSmallTitle}
           </p>
 
           <h2 className="text-4xl font-bold tracking-tight">
-            Education & certificates
+            {t.certificatesTitle}
           </h2>
 
           <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -379,14 +401,13 @@ export default function App() {
                 key={certificate.title}
                 className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] shadow-xl shadow-black/20 transition hover:-translate-y-2 hover:border-cyan-300/40"
               >
-
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-white">
-                    {certificate.title}
+                    {language === "en" ? certificate.title : certificate.titleRu}
                   </h3>
 
                   <p className="mt-2 text-sm text-slate-300">
-                    {certificate.issuer}
+                    {language === "en" ? certificate.issuer : certificate.issuerRu}
                   </p>
                 </div>
               </article>
@@ -408,16 +429,15 @@ export default function App() {
           className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.04] p-8 text-center shadow-2xl shadow-black/20 md:p-12"
         >
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">
-            Contact
+            {t.contactSmallTitle}
           </p>
 
           <h2 className="text-4xl font-bold tracking-tight">
-            Let&apos;s work together
+            {t.contactTitle}
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl leading-8 text-slate-300">
-            I am open to junior frontend developer opportunities, internships,
-            freelance tasks, and team projects.
+            {t.contactText}
           </p>
 
           <a
@@ -425,13 +445,13 @@ export default function App() {
             className="mt-8 inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition hover:-translate-y-0.5 hover:bg-cyan-300"
           >
             <Mail size={18} />
-            Send Email
+            {t.sendEmail}
           </a>
         </motion.div>
       </section>
 
       <footer className="relative z-10 border-t border-white/10 px-6 py-8 text-center text-sm text-slate-400">
-        © {new Date().getFullYear()} Ayan Akhundova. Built with React.
+        © {new Date().getFullYear()} Ayan Akhundova. {t.footer}
       </footer>
     </main>
   );
