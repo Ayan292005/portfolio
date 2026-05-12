@@ -74,6 +74,7 @@ export const translations = {
     code: "Код",
     demo: "Демо",
 
+    
     certificatesSmallTitle: "Сертификаты",
     certificatesTitle: "Образование и сертификаты",
 

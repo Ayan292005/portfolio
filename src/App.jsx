@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { translations } from "./translations";
 
@@ -17,14 +17,14 @@ import {
   Laptop,
 } from "lucide-react";
 
-import ecoFriendlyVideo from "./assets/eco-friendly.mp4";
+import ecoFriendlyVideo from "./assets/eco-friendly-demo.mp4";
 import ecoFriendlyPreview from "./assets/eco-friendly-preview.png";
 
-// import weatherVideo from "./assets/weather-demo.mp4";
-// import weatherPreview from "./assets/weather-preview.png";
+import libraryVideo from "./assets/library-demo.mp4";
+import libraryPreview from "./assets/library-preview.png";
 
-// import landingVideo from "./assets/landing-demo.mp4";
-// import landingPreview from "./assets/landing-preview.png";
+import taskManagerVideo from "./assets/taskManager-demo.mp4";
+import taskManagerPreview from "./assets/taskManager-preview.png";
 
 const skills = [
   "HTML",
@@ -37,6 +37,7 @@ const skills = [
   "Responsive Design",
 ];
 
+
 const projects = [
   {
     title: "Eco-Friendly Store Website",
@@ -48,28 +49,28 @@ const projects = [
     github: "https://github.com/Ayan292005/website-old-template-2024.git",
     video: ecoFriendlyVideo,
     preview: ecoFriendlyPreview,
+
   },
   {
-    title: "Weather App",
+    title: "Digital Library",
     description:
-      "A responsive weather application that allows users to search for cities and view current weather information using an external API.",
-    descriptionRu:
-      "Адаптивное приложение погоды, которое позволяет пользователям искать города и просматривать текущую информацию о погоде через внешний API.",
+      "Digital Library is a responsive React application for browsing and reading classic books online. It uses the Gutendex API to display real book data, including covers, authors, languages, and download counts. Users can search books, view detailed pages, save favorites, switch themes, and navigate through cached paginated results for a smoother experience.",
+    descriptionRu:"Онлайн Библиотека — адаптивное React-приложение для поиска, просмотра и чтения классических книг онлайн. Проект использует Gutendex API и позволяет пользователям открывать подробную информацию о книгах, сохранять избранное, переключать темы и удобно переходить между страницами.",
     tech: ["React", "JS", "CSS", "API"],
-    github: "https://github.com/yourusername/weather-app",
-    // video: weatherVideo,
-    // preview: weatherPreview,
+    github: "https://github.com/Ayan292005/digital-library-project",
+    video: libraryVideo,
+    preview: libraryPreview,
   },
   {
-    title: "Modern Landing Page",
-    description:
-      "A clean and responsive landing page created from a Figma-style design with focus on layout, typography, and mobile-friendly UI.",
-    descriptionRu:
-      "Аккуратный и адаптивный лендинг, созданный по дизайну в стиле Figma, с акцентом на структуру, типографику и удобство на мобильных устройствах.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/yourusername/landing-page",
-    // video: landingVideo,
-    // preview: landingPreview,
+  title: "Task Manager Dashboard",
+  description:
+    "A responsive task management dashboard where users can add, edit, delete, complete, and filter tasks. The project uses React state, localStorage, reusable components, and a clean dashboard-style interface.",
+  descriptionRu:
+    "Адаптивная панель управления задачами, где пользователи могут добавлять, редактировать, удалять, выполнять и фильтровать задачи. Проект использует React state, localStorage, переиспользуемые компоненты и чистый dashboard-интерфейс.",
+  tech: ["React", "CSS", "localStorage", "CRUD"],
+  github: "https://github.com/Ayan292005/task-manager",
+    video: taskManagerVideo,
+    preview: taskManagerPreview,
   },
 ];
 
@@ -121,7 +122,7 @@ export default function App() {
         <div className="absolute bottom-[-160px] left-[35%] h-96 w-96 rounded-full bg-fuchsia-500/10 blur-3xl" />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
+      <header className="fixed w-full top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
         <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6">
           <a
             href="#home"
