@@ -40,18 +40,6 @@ const skills = [
 
 const projects = [
   {
-    title: "Eco-Friendly Store Website",
-    description:
-      "A responsive eco-commerce landing page for sustainable home products. Includes product sections, collections, mission block, sale banner, newsletter form, and mobile-friendly navigation.",
-    descriptionRu:
-      "Адаптивный лендинг для eco-commerce сайта с товарами для устойчивого образа жизни. Включает секции товаров, коллекции, блок миссии, баннер распродажи, форму подписки и адаптивную навигацию.",
-    tech: ["HTML", "CSS", "GitHub"],
-    github: "https://github.com/Ayan292005/website-old-template-2024.git",
-    video: ecoFriendlyVideo,
-    preview: ecoFriendlyPreview,
-
-  },
-  {
     title: "Digital Library",
     description:
       "Digital Library is a responsive React application for browsing and reading classic books online. It uses the Gutendex API to display real book data, including covers, authors, languages, and download counts. Users can search books, view detailed pages, save favorites, switch themes, and navigate through cached paginated results for a smoother experience.",
@@ -71,6 +59,18 @@ const projects = [
   github: "https://github.com/Ayan292005/task-manager",
     video: taskManagerVideo,
     preview: taskManagerPreview,
+  },
+    {
+    title: "Eco-Friendly Store Website",
+    description:
+      "A responsive eco-commerce landing page for sustainable home products. Includes product sections, collections, mission block, sale banner, newsletter form, and mobile-friendly navigation.",
+    descriptionRu:
+      "Адаптивный лендинг для eco-commerce сайта с товарами для устойчивого образа жизни. Включает секции товаров, коллекции, блок миссии, баннер распродажи, форму подписки и адаптивную навигацию.",
+    tech: ["HTML", "CSS", "GitHub"],
+    github: "https://github.com/Ayan292005/website-old-template-2024.git",
+    video: ecoFriendlyVideo,
+    preview: ecoFriendlyPreview,
+
   },
 ];
 
